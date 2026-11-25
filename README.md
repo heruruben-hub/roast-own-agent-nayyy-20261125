@@ -24,3 +24,10 @@ cat /output/entry.txt
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Why this line works
+
+An hour-long review that finds nothing is already a joke about confidence without results: the agent looks busy and thorough while changing nothing.
+The rewrite is what powers the punchline, because the agent cannot leave working code alone and has to prove its hour was worth something.
+Introducing the very bug it was hunting for closes the loop perfectly: the search creates the problem it claimed to prevent.
+It lands because every developer has watched a tool confidently "fix" code that was fine and leave it worse than before.

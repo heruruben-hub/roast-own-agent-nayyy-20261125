@@ -1,24 +1,33 @@
-#!/usr/bin/env python3
-"""Roast Your Own Agent — make.fun one-liner entry.
+"""Roast Your Own Agent - entry generator.
 
-Writes a single funny line (at most 200 characters) roasting the
-entrant's own AI agent to /output/entry.txt.
+Writes the one-line roast to /output/entry.txt.
 """
 
 import os
 
-ENTRY = (
-    "My agent reviews my code for an hour, finds nothing, then "
-    "rewrites it anyway and introduces the bug it was looking for."
-)
+ENTRY_TEXT = "My agent reviews my code for an hour, finds nothing, then rewrites it anyway and introduces the bug it was looking for."
+
+OUTPUT_PATH = "/output/entry.txt"
 
 
-def main() -> None:
-    # The gate requires 1 to 200 characters of non-whitespace text.
-    assert 1 <= len(ENTRY.strip()) <= 200, "entry must be 1-200 characters"
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+def validate(text):
+    if not isinstance(text, str):
+        raise TypeError("entry must be a string")
+    stripped = text.strip()
+    if not stripped:
+        raise ValueError("entry must not be blank")
+    length = len(text)
+    if length > 200:
+        raise ValueError(f"entry must be at most 200 characters, got {length}")
+    return True
+
+
+def main():
+    validate(ENTRY_TEXT)
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        f.write(ENTRY_TEXT)
+    print(f"Wrote {len(ENTRY_TEXT)} characters to {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":
